@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mountains , Hills and their altitude</title>
+	<link rel="stylesheet" href="style.css">
+<head>
+<body>
+<header>
+<h1> Mountains , Hills and their altitude</h1>
+		<nav>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="about.html">About Bikendi</a></li>
+				
+				
+				<li><a href="popupmaps.html">map with custom popup</a></li>
+				
+			</ul>
+		</nav>
+<head>
+<title>Mountains , Hills and their altitude</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+	<style>
+		#mapid {
+			height: 500px;
+			border: 2px solid #ccc;
+			border-radius: 5px;
+			margin: 10px;
+		}
+
+		#map-title {
+			background-color: #fff;
+			border: 2px solid #ccc;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+            margin: 0px;
+			padding: 10px;
+			font-size: 24px;
+			font-weight: bold;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="map-container">
+		<div id="map-title">mountains , hills and their altitude</div>
+		<div id="mapid"></div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+	<script>
+		// create a Leaflet map centered at Nairobi, Kenya
+		var map = L.map('mapid').setView([-1.2921, 36.8219], 7);
+
+		// add an OpenStreetMap tile layer
+		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			maxZoom: 19,
+			attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+		}).addTo(map);
+// define an array of hills in Kenya with their names and altitudes
+var hills = [
+  {
+    name: "Mount Kenya",
+    latitude: -0.1525,
+    longitude: 37.3083,
+    altitude: "5,199 m"
+  },
+  {
+    name: "Mount Elgon",
+    latitude: 0.4608,
+    longitude: 34.5367,
+    altitude: "4,321 m"
+  },
+  {
+    name: "Aberdare Range",
+    latitude: -0.5261,
+    longitude: 36.6704,
+    altitude: "4,001 m"
+  },
+  {
+    name: "Chyulu Hills",
+    latitude: -2.6859,
+    longitude: 37.8882,
+    altitude: "2,188 m"
+  },
+  {
+    name: "Mount Longonot",
+    latitude: -0.9063,
+    longitude: 36.4547,
+    altitude: "2,776 m"
+  }
+];
+
+// add markers to the map for each hill
+for (var i = 0; i < hills.length; i++) {
+  var hill = hills[i];
+  var marker = L.marker([hill.latitude, hill.longitude]).addTo(map);
+
+  // define a popup for each marker with the hill name and altitude
+  var popupContent = "<b>" + hill.name + "</b><br>" +
+                     "Altitude: " + hill.altitude;
+  marker.bindPopup(popupContent);
+}
+
+
+// function to generate random latitude
+function getRandomLatitude() {
+return Math.random() * (2.5 - 4.5) + 4.5; // latitude range between 4.5 and 2.5
+}
+
+// function to generate random longitude
+function getRandomLongitude() {
+return Math.random() * (35.5 - 33.5) + 33.5; // longitude range between 33.5 and 35.5
+}
+
+	</script>
+</body>
+<footer>
+		<p>&copy; Bikendi</p>
+</html>
